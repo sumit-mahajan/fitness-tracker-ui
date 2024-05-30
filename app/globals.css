@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-color: #101014;
+  --card-color: #1b1b1c;
+}
+
+body {
+  background-color: var(--background-color);
+  color: white;
+}
