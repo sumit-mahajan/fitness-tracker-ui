@@ -1,77 +1,33 @@
-import FitnessLogo from "../public/fitness-logo.svg";
-import {
-  faHouse,
-  faCalendar,
-  faGear,
-  faUser,
-  faClock,
-  faBolt,
-  faFontAwesome,
-  faMedal,
-  faArrowRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
 import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
+import SideBar from "@/components/SideBar";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import ProfileAvatar from "../public/woman_avatar_1.png";
 
 export default function Home() {
   return (
-    <main>
-      <aside className="min-h-screen max-w-48 bg-card-color">
-        <Image
-          src={FitnessLogo}
-          height={36}
-          width={42}
-          className="mx-auto pt-10 pb-4"
-          alt={"logo"}
-        />
-
-        <div className="flex-col">
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faHouse} />
-            <p className="ml-4">Overview</p>
+    <>
+      <div className="flex">
+        <SideBar />
+        <main className="w-full">
+          <div className="flex justify-between items-center py-5 pl-10 pr-6 w-full">
+            <div className="flex items-center">
+              <FontAwesomeIconWrapper icon={faLocationDot} />
+              <p className="pl-2  text-txt-color-secondary">
+                Seattle, United States
+              </p>
+            </div>
+            <Image
+              className="rounded-2xl"
+              height={40}
+              width={40}
+              src={ProfileAvatar}
+              alt="profile_avatar"
+            />
           </div>
-
-          <div className="flex items-center pl-8 pt-6 text-txt-color-secondary">
-            <FontAwesomeIconWrapper icon={faMedal} />
-            <p className="ml-4">Competition</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faClock} />
-            <p className="ml-4">Timer</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faBolt} />
-            <p className="ml-4">Energy</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faCalendar} />
-            <p className="ml-4">Calendar</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faFontAwesome} />
-            <p className="ml-4">Distances</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faUser} />
-            <p className="ml-4">Profile</p>
-          </div>
-
-          <div className="flex items-center pl-8 pt-6">
-            <FontAwesomeIconWrapper icon={faGear} />
-            <p className="ml-4">Settings</p>
-          </div>
-        </div>
-
-        <div className="flex items-center pl-8 absolute bottom-0 pb-10">
-          <FontAwesomeIconWrapper icon={faArrowRightFromBracket} />
-          <p className="ml-4">Log Out</p>
-        </div>
-      </aside>
-    </main>
+        </main>
+        <div className="bg-card-color rounded-3xl m-5 right-0 min-h-screen min-w-[400px]"></div>
+      </div>
+    </>
   );
 }

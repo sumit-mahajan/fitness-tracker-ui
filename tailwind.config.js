@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         "card-color": "#1b1b1c",
         "background-color": "#101014",
-        "txt-color-secondary": "#5C5B5B",
+        "txt-color-secondary": "#84888B",
       },
     },
   },
