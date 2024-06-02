@@ -12,3 +12,17 @@ body {
   background-color: var(--background-color);
   color: white;
 }
+
+text.CircularProgressbar-text {
+  fill: white !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+}
+
+path.CircularProgressbar-trail {
+  stroke: #84888b !important;
+}
+
+path.CircularProgressbar-path {
+  stroke: #e0c5dc !important;
+}

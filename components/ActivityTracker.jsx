@@ -7,6 +7,7 @@ import {
   faRoute,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CircularProgressbar } from "react-circular-progressbar";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,14 +22,16 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 function ActivityTracker() {
   const datesList = [
-    { weekday: "Sun", date: 18 },
-    { weekday: "Mon", date: 19 },
-    { weekday: "Tue", date: 20 },
-    { weekday: "Wed", date: 21 },
-    { weekday: "Thu", date: 22 },
-    { weekday: "Fri", date: 23 },
-    { weekday: "Sat", date: 24 },
+    { weekday: "Sun", date: 18, runningTime: 24 },
+    { weekday: "Mon", date: 19, runningTime: 30 },
+    { weekday: "Tue", date: 20, runningTime: 8 },
+    { weekday: "Wed", date: 21, runningTime: 18 },
+    { weekday: "Thu", date: 22, runningTime: 24 },
+    { weekday: "Fri", date: 23, runningTime: 40 },
+    { weekday: "Sat", date: 24, runningTime: 30 },
   ];
+
+  const timePerDay = [24, 30, 40, 18, 24, 8, 30];
 
   const [selectedDayIndex, setSelectedDayIndex] = useState(4);
 
@@ -72,8 +75,9 @@ function ActivityTracker() {
             />
           </div>
         </div>
+
         <div>
-          <div className="flex justify-between px-7">
+          <div className="flex justify-between px-7 gap-1">
             {datesList.map((day, idx) => (
               <div
                 key={day.weekday}
@@ -89,12 +93,16 @@ function ActivityTracker() {
               </div>
             ))}
           </div>
-          <div className="h-[120px] px-7 mt-7 mb-4">
+
+          <div className="h-[140px] mt-6 px-7">
             <Line
               options={{ maintainAspectRatio: false }}
               data={lineChartData}
             />
           </div>
+
+          <p className="mb-6 text-sm text-center">Heart Rate</p>
+
           <div className="bg-card-hover-color p-5 rounded-2xl mx-7">
             <div className="flex items-center">
               <FontAwesomeIcon icon={faClock} />
@@ -103,24 +111,35 @@ function ActivityTracker() {
               </p>
             </div>
             <p className="text-lg font-semibold ml-7">2 h 45 m</p>
-            <div className="flex justify-between px-7">
-              {datesList.map((day, idx) => (
-                <div
-                  key={day.weekday}
-                  className={`flex flex-col items-center w-[35px]`}
-                >
+            <div className="flex justify-between">
+              {datesList.map((day, idx) => {
+                const calculatedHeight = Math.round(
+                  (40 * day.runningTime) / 40
+                );
+                return (
                   <div
-                    className={`bg-white my-3 h-[25px] w-[5px] rounded-lg`}
-                  ></div>
-                  <p className="text-sm text-txt-color-secondary">
-                    {day.weekday}
-                  </p>
-                </div>
-              ))}
+                    key={day.weekday}
+                    className={`flex flex-col items-center w-[35px]`}
+                  >
+                    <div
+                      className={`relative bg-card-hover-color my-4 h-[40px] w-[5px] rounded-xl`}
+                    >
+                      <div
+                        style={{ height: calculatedHeight + "px" }}
+                        className={`absolute bottom-0 bg-white w-[5px] rounded-xl`}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-txt-color-secondary">
+                      {day.weekday}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <div className="flex mt-5">
-            <div className="bg-card-hover-color p-5 rounded-2xl mx-7">
+
+          <div className="flex my-5">
+            <div className="bg-card-hover-color p-5 rounded-2xl ml-7 mr-5 flex-1">
               <div className="flex items-center">
                 <FontAwesomeIcon icon={faRoute} />
                 <p className="text-sm ml-3 text-txt-color-secondary">
@@ -128,8 +147,14 @@ function ActivityTracker() {
                 </p>
               </div>
               <p className="text-lg font-semibold ml-7">70 km</p>
+              <CircularProgressbar
+                className="h-24 mt-4"
+                value={55}
+                text={`37.1 km`}
+              />
             </div>
-            <div className="bg-card-hover-color p-5 rounded-2xl mx-7">
+
+            <div className="bg-card-hover-color p-5 rounded-2xl mr-7 flex-1">
               <div className="flex items-center">
                 <FontAwesomeIcon icon={faFire} />
                 <p className="text-sm ml-3 text-txt-color-secondary">
@@ -137,6 +162,17 @@ function ActivityTracker() {
                 </p>
               </div>
               <p className="text-lg font-semibold ml-7">13 km/hr</p>
+              <div className="flex items-baseline justify-around mt-7 mr-3">
+                {Array(9)
+                  .fill("")
+                  .map((obj, idx) => (
+                    <div
+                      key={idx}
+                      style={{ height: (idx + 1) / 2 + "rem" }}
+                      className={`bg-quaternary w-[5px] rounded-xl`}
+                    ></div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

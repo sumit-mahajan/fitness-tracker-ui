@@ -1,5 +1,6 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import "react-circular-progressbar/dist/styles.css";
 
 export const metadata = {
   title: "Create Next App",

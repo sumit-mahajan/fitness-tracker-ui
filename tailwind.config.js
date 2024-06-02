@@ -14,7 +14,7 @@ module.exports = {
         primary: "#E0C5DC",
         secondary: "#E7DCF4",
         tertiary: "#F2EEE9",
-        quaternary: "#E6F5FB",
+        quaternary: "#AEE8FF",
         "card-hover-color": "#2B2B2E",
       },
     },
