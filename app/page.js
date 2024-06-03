@@ -1,3 +1,5 @@
+"use client";
+
 import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
 import SideBar from "@/components/SideBar";
 import {
@@ -16,24 +18,45 @@ import ActivityTracker from "@/components/ActivityTracker";
 import ProfileAvatar from "../public/woman_avatar_1.png";
 import KateAvatar from "../public/woman_avatar_2.jpg";
 import Shoe from "../public/shoe.svg";
+import Symmetry from "../public/symmetry.png";
+import FitnessLogo from "../public/fitness-logo.svg";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  let isMobile;
+
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    isMobile = window.matchMedia("(max-width: 768px)").matches;
+  }, []);
+
   return (
     <>
-      <div className="flex">
-        <SideBar />
-        <main className="w-full">
-          <div className="flex justify-between items-center py-5 px-10 w-full">
+      {!isMobile ? <SideBar /> : isMenuOpen ? <SideBar /> : <></>}
+      <div className="flex flex-col sm:flex-row">
+        <main className="w-full sm:ml-[17vw]">
+          <div className="flex justify-between items-center py-5 px-5 sm:px-10 w-full">
             <div className="flex items-center">
+              <Image
+                src={FitnessLogo}
+                height={30}
+                width={35}
+                className="mr-8 block sm:hidden"
+                alt={"logo"}
+                onClick={() => {
+                  setMenuOpen(true);
+                }}
+              />
               <FontAwesomeIconWrapper icon={faLocationDot} />
-              <p className="pl-2  text-txt-color-secondary">
+              <p className="pl-2 text-txt-color-secondary">
                 Seattle, United States
               </p>
             </div>
             <div className="flex items-center">
               <div className="bg-card-color hover:bg-card-hover-color hover:cursor-pointer rounded-2xl p-2">
                 <FontAwesomeIcon
-                  className={"text-white  w-[23px] text-center"}
+                  className={"text-white w-[23px] text-center"}
                   icon={faBell}
                 />
               </div>
@@ -46,7 +69,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5 px-10">
+          <div className="grid grid-cols-2 gap-5 px-5 sm:px-10">
             <div className="bg-tertiary rounded-2xl">
               <div className="flex flex-col items-center m-5">
                 <FontAwesomeIconWrapper
@@ -54,7 +77,7 @@ export default function Home() {
                   className={"text-black"}
                 />
                 <p className="text-sm text-card-color mt-3">Time</p>
-                <p className="text-black text-2xl font-bold">56m</p>
+                <p className="mt-1 text-black text-2xl font-bold">56m</p>
               </div>
             </div>
             <div className="bg-secondary rounded-2xl">
@@ -64,7 +87,7 @@ export default function Home() {
                   className={"text-black"}
                 />
                 <p className="text-sm text-card-color mt-3">Total Distance</p>
-                <p className="text-black text-2xl font-bold">5.3km</p>
+                <p className="mt-1 text-black text-2xl font-bold">5.3km</p>
               </div>
             </div>
             <div className="bg-primary rounded-2xl">
@@ -74,7 +97,7 @@ export default function Home() {
                   className={"text-black"}
                 />
                 <p className="text-sm text-card-color mt-3">Energy Burn</p>
-                <p className="text-black text-2xl font-bold">1345 kcal</p>
+                <p className="mt-1 text-black text-2xl font-bold">1345 kcal</p>
               </div>
             </div>
             <div className="bg-quaternary rounded-2xl">
@@ -84,12 +107,12 @@ export default function Home() {
                   className={"text-black"}
                 />
                 <p className="text-sm text-card-color mt-3">Sleep</p>
-                <p className="text-black text-2xl font-bold">7h 30m</p>
+                <p className="mt-1 text-black text-2xl font-bold">7h 30m</p>
               </div>
             </div>
           </div>
 
-          <div className="flex my-5 gap-5 mx-10">
+          <div className="flex my-5 gap-5 px-5 sm:px-10">
             <div className=" bg-card-color p-5 rounded-2xl flex-1">
               <div className="flex flex-col items-center">
                 <Image
@@ -99,7 +122,7 @@ export default function Home() {
                   src={Shoe}
                   alt="left_shoe"
                 />
-                <p className="text-xs text-txt-color-secondary mt-2">Contact</p>
+                <p className="text-xs text-txt-color-secondary mt-4">Contact</p>
                 <p className="text-sm mt-1">17 min</p>
                 <p className="text-xs text-txt-color-secondary mt-2">
                   Flight Time
@@ -116,7 +139,7 @@ export default function Home() {
                   src={Shoe}
                   alt="right_shoe"
                 />
-                <p className="text-xs text-txt-color-secondary mt-2">Contact</p>
+                <p className="text-xs text-txt-color-secondary mt-4">Contact</p>
                 <p className="text-sm mt-1">17 min</p>
                 <p className="text-xs text-txt-color-secondary mt-2">
                   Flight Time
@@ -124,10 +147,18 @@ export default function Home() {
                 <p className="text-sm mt-1">17 min</p>
               </div>
             </div>
-            <div className=" bg-card-color p-5 rounded-2xl flex-1"></div>
+            <div className=" bg-card-color p-5 rounded-2xl flex-1">
+              <div className="flex flex-col items-center">
+                <Image height={40} width={40} src={Symmetry} alt="symmetry" />
+                <p className="text-xs text-txt-color-secondary mt-4">
+                  Symmetry
+                </p>
+                <p className="text-sm mt-1">95%</p>
+              </div>
+            </div>
           </div>
 
-          <div className="bg-card-color p-5 rounded-2xl my-5 mx-10">
+          <div className="bg-card-color p-5 rounded-2xl my-5 mx-5 sm:mx-10">
             <div className="flex">
               <Image
                 className="rounded-2xl"
