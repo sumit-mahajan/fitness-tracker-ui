@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
 import SideBar from "@/components/SideBar";
 import {
@@ -20,20 +21,26 @@ import KateAvatar from "../public/woman_avatar_2.jpg";
 import Shoe from "../public/shoe.svg";
 import Symmetry from "../public/symmetry.png";
 import FitnessLogo from "../public/fitness-logo.svg";
-import { useEffect, useState } from "react";
+import GreenUpIcon from "../public/green-up.svg";
+import RedDownIcon from "../public/red-down.svg";
 
 export default function Home() {
-  let isMobile;
-
+  const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    isMobile = window.matchMedia("(max-width: 768px)").matches;
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
   }, []);
 
   return (
     <>
-      {!isMobile ? <SideBar /> : isMenuOpen ? <SideBar /> : <></>}
+      {!isMobile ? (
+        <SideBar />
+      ) : isMenuOpen ? (
+        <SideBar setMenuOpen={setMenuOpen} />
+      ) : (
+        <></>
+      )}
       <div className="flex flex-col sm:flex-row">
         <main className="w-full sm:ml-[17vw]">
           <div className="flex justify-between items-center py-5 px-5 sm:px-10 w-full">
@@ -42,7 +49,7 @@ export default function Home() {
                 src={FitnessLogo}
                 height={30}
                 width={35}
-                className="mr-8 block sm:hidden"
+                className="mr-5 block sm:hidden"
                 alt={"logo"}
                 onClick={() => {
                   setMenuOpen(true);
@@ -69,44 +76,44 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5 px-5 sm:px-10">
+          <div className="grid grid-cols-2 gap-5 px-5 py-2 sm:px-10">
             <div className="bg-tertiary rounded-2xl">
-              <div className="flex flex-col items-center m-5">
+              <div className="flex flex-col items-center m-5 my-6">
                 <FontAwesomeIconWrapper
                   icon={faClock}
                   className={"text-black"}
                 />
-                <p className="text-sm text-card-color mt-3">Time</p>
+                <p className="text-md text-card-color mt-3">Time</p>
                 <p className="mt-1 text-black text-2xl font-bold">56m</p>
               </div>
             </div>
             <div className="bg-secondary rounded-2xl">
-              <div className="flex flex-col items-center m-5">
+              <div className="flex flex-col items-center m-5 my-6">
                 <FontAwesomeIconWrapper
                   icon={faRoute}
                   className={"text-black"}
                 />
-                <p className="text-sm text-card-color mt-3">Total Distance</p>
+                <p className="text-md text-card-color mt-3">Total Distance</p>
                 <p className="mt-1 text-black text-2xl font-bold">5.3km</p>
               </div>
             </div>
             <div className="bg-primary rounded-2xl">
-              <div className="flex flex-col items-center m-5">
+              <div className="flex flex-col items-center m-5 my-6">
                 <FontAwesomeIconWrapper
                   icon={faFire}
                   className={"text-black"}
                 />
-                <p className="text-sm text-card-color mt-3">Energy Burn</p>
+                <p className="text-md text-card-color mt-3">Energy Burn</p>
                 <p className="mt-1 text-black text-2xl font-bold">1345 kcal</p>
               </div>
             </div>
             <div className="bg-quaternary rounded-2xl">
-              <div className="flex flex-col items-center m-5">
+              <div className="flex flex-col items-center m-5 my-6">
                 <FontAwesomeIconWrapper
                   icon={faMoon}
                   className={"text-black"}
                 />
-                <p className="text-sm text-card-color mt-3">Sleep</p>
+                <p className="text-md text-card-color mt-3">Sleep</p>
                 <p className="mt-1 text-black text-2xl font-bold">7h 30m</p>
               </div>
             </div>
@@ -123,11 +130,18 @@ export default function Home() {
                   alt="left_shoe"
                 />
                 <p className="text-xs text-txt-color-secondary mt-4">Contact</p>
-                <p className="text-sm mt-1">17 min</p>
+                <div className="flex items-end mt-1">
+                  <p className="text-sm mr-1">17 min</p>
+                  <Image height={15} width={15} src={GreenUpIcon} alt="up" />
+                </div>
+
                 <p className="text-xs text-txt-color-secondary mt-2">
                   Flight Time
                 </p>
-                <p className="text-sm mt-1">17 min</p>
+                <div className="flex items-end mt-1">
+                  <p className="text-sm mr-1">17 min</p>
+                  <Image height={15} width={15} src={RedDownIcon} alt="down" />
+                </div>
               </div>
             </div>
             <div className=" bg-card-color p-5 rounded-2xl flex-1">
@@ -140,11 +154,18 @@ export default function Home() {
                   alt="right_shoe"
                 />
                 <p className="text-xs text-txt-color-secondary mt-4">Contact</p>
-                <p className="text-sm mt-1">17 min</p>
+                <div className="flex items-end mt-1">
+                  <p className="text-sm mr-1">17 min</p>
+                  <Image height={15} width={15} src={GreenUpIcon} alt="up" />
+                </div>
+
                 <p className="text-xs text-txt-color-secondary mt-2">
                   Flight Time
                 </p>
-                <p className="text-sm mt-1">17 min</p>
+                <div className="flex items-end mt-1">
+                  <p className="text-sm mr-1">17 min</p>
+                  <Image height={15} width={15} src={RedDownIcon} alt="down" />
+                </div>
               </div>
             </div>
             <div className=" bg-card-color p-5 rounded-2xl flex-1">
@@ -153,7 +174,23 @@ export default function Home() {
                 <p className="text-xs text-txt-color-secondary mt-4">
                   Symmetry
                 </p>
-                <p className="text-sm mt-1">95%</p>
+                <div className="flex items-baseline justify-between my-3.5 sm:my-2 gap-2 sm:gap-3">
+                  {Array(isMobile ? 6 : 9)
+                    .fill("")
+                    .map((obj, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          height: ((isMobile ? 6 : 9) - idx) / 4 + "rem",
+                        }}
+                        className={`bg-white w-[2px] rounded-xl`}
+                      ></div>
+                    ))}
+                </div>
+                <div className="flex items-end">
+                  <p className="text-sm mr-1">95 %</p>
+                  <Image height={15} width={15} src={GreenUpIcon} alt="up" />
+                </div>
               </div>
             </div>
           </div>
@@ -201,7 +238,7 @@ export default function Home() {
             </div>
 
             <div className="h-1 w-full rounded-sm bg-card-hover-color flex justify-center">
-              <div className="h-1 w-[18vw] rounded-sm bg-white"></div>
+              <div className="h-1 w-48 rounded-sm bg-white"></div>
             </div>
 
             <p className="text-sm text-center mt-5">Double Walking Time</p>

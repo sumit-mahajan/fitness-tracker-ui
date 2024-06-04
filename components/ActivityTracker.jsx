@@ -60,7 +60,7 @@ function ActivityTracker() {
 
   return (
     <>
-      <div className="bg-card-color rounded-3xl my-5 mx-5 sm:mx-0 sm:mr-8 right-0">
+      <div className="bg-card-color sm:rounded-3xl sm:my-5 sm:mx-0 sm:mr-8 right-0">
         <div className="flex justify-between items-center px-7 py-5">
           <div>
             <p className="text-2xl font-medium">Activity Tracking</p>
