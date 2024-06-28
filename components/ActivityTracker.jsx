@@ -114,7 +114,7 @@ function ActivityTracker() {
             <div className="flex justify-between">
               {datesList.map((day, idx) => {
                 const calculatedHeight = Math.round(
-                  (40 * day.runningTime) / 40
+                  (50 * day.runningTime) / 40
                 );
                 return (
                   <div
@@ -122,7 +122,7 @@ function ActivityTracker() {
                     className={`flex flex-col items-center w-[35px]`}
                   >
                     <div
-                      className={`relative bg-card-hover-color my-4 h-[40px] w-[5px] rounded-xl`}
+                      className={`relative bg-card-hover-color my-4 h-[50px] w-[5px] rounded-xl`}
                     >
                       <div
                         style={{ height: calculatedHeight + "px" }}
@@ -148,7 +148,7 @@ function ActivityTracker() {
               </div>
               <p className="text-lg font-semibold ml-7">70 km</p>
               <CircularProgressbar
-                className="h-24 mt-4"
+                className="h-28 mt-4"
                 value={55}
                 text={`37.1 km`}
               />
@@ -162,7 +162,7 @@ function ActivityTracker() {
                 </p>
               </div>
               <p className="text-lg font-semibold ml-7">13 km/hr</p>
-              <div className="flex items-baseline justify-around mt-7 mr-3">
+              <div className="flex items-baseline justify-around mt-10 mr-3">
                 {Array(9)
                   .fill("")
                   .map((obj, idx) => (

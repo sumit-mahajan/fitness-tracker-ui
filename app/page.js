@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
-import SideBar from "@/components/SideBar";
 import {
   faCalendar,
   faClock,
@@ -14,23 +12,35 @@ import {
 import Image from "next/image";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ActivityTracker from "@/components/ActivityTracker";
 
-import ProfileAvatar from "../public/woman_avatar_1.png";
-import KateAvatar from "../public/woman_avatar_2.jpg";
-import Shoe from "../public/shoe.svg";
-import Symmetry from "../public/symmetry.png";
-import FitnessLogo from "../public/fitness-logo.svg";
-import GreenUpIcon from "../public/green-up.svg";
-import RedDownIcon from "../public/red-down.svg";
+import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
+import SideBar from "@/components/SideBar";
+import ActivityTracker from "@/components/ActivityTracker";
+import LoadingPage from "@/components/LoadingPage";
+
+import ProfileAvatar from "../public/images/woman_avatar_1.png";
+import KateAvatar from "../public/images/woman_avatar_2.jpg";
+import Shoe from "../public/images/shoe.svg";
+import Symmetry from "../public/images/symmetry.png";
+import FitnessLogo from "../public/images/fitness-logo.svg";
+import GreenUpIcon from "../public/images/green-up.svg";
+import RedDownIcon from "../public/images/red-down.svg";
 
 export default function Home() {
+  const [isLoading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
   }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <>

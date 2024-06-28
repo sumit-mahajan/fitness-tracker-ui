@@ -17,6 +17,23 @@ module.exports = {
         quaternary: "#AEE8FF",
         "card-hover-color": "#2B2B2E",
       },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "30%": { opacity: "1" },
+          "100%": { opacity: "1" },
+        },
+        fadeInOut: {
+          "0%": { opacity: "0" },
+          "30%": { opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 2s ease-in-out",
+        fadeInOut: "fadeInOut 2s ease-in-out",
+      },
     },
   },
   plugins: [],

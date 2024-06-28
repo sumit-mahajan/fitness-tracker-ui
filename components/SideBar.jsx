@@ -1,4 +1,4 @@
-import FitnessLogo from "../public/fitness-logo.svg";
+import Image from "next/image";
 import {
   faHouse,
   faCalendar,
@@ -10,8 +10,9 @@ import {
   faMedal,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+
 import FontAwesomeIconWrapper from "@/components/FontAwesomeIconWrapper";
-import Image from "next/image";
+import FitnessLogo from "../public/images/fitness-logo.svg";
 
 function SideBar({ setMenuOpen = () => {} }) {
   return (
